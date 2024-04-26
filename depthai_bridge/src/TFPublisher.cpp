@@ -1,6 +1,8 @@
 #include "depthai_bridge/TFPublisher.hpp"
 
 #include <dirent.h>
+#include "subprocess.hpp"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/types.h>
@@ -235,16 +237,15 @@ std::string TFPublisher::getURDF() {
     }
     std::string cmd = "xacro " + path + args;
     RCLCPP_DEBUG(_logger, "Xacro command: %s", cmd.c_str());
-    std::array<char, 128> buffer;
-    std::string result;
-    std::unique_ptr<FILE, decltype(&pclose)> pipe(popen(cmd.c_str(), "r"), pclose);
-    if(!pipe) {
+
+    subprocess::OutBuffer xacro_out;
+    try {
+        xacro_out = subprocess::check_output(cmd);
+    } catch(...) {
         throw std::runtime_error("popen() failed!");
     }
-    while(fgets(buffer.data(), buffer.size(), pipe.get()) != nullptr) {
-        result += buffer.data();
-    }
-    return result;
+    
+    return std::string(xacro_out.buf.begin(), xacro_out.buf.end());
 }
 }  // namespace ros
 }  // namespace dai
