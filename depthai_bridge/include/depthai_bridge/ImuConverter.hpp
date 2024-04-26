@@ -166,7 +166,7 @@ class ImuConverter {
     void fillImuMsg(depthai_ros_msgs::msg::ImuWithMagneticField& msg, dai::IMUReportMagneticField report);
 
     template <typename I, typename S, typename T, typename F, typename M>
-    void CreateUnitMessage(M& msg, std::chrono::_V2::steady_clock::time_point timestamp, I first, S second, T third, F fourth) {
+    void CreateUnitMessage(M& msg, std::chrono::steady_clock::time_point timestamp, I first, S second, T third, F fourth) {
         fillImuMsg(msg, first);
         fillImuMsg(msg, second);
         fillImuMsg(msg, third);
@@ -178,7 +178,7 @@ class ImuConverter {
     }
 
     template <typename I, typename S, typename T, typename M>
-    void CreateUnitMessage(M& msg, std::chrono::_V2::steady_clock::time_point timestamp, I first, S second, T third) {
+    void CreateUnitMessage(M& msg, std::chrono::steady_clock::time_point timestamp, I first, S second, T third) {
         fillImuMsg(msg, first);
         fillImuMsg(msg, second);
         fillImuMsg(msg, third);
@@ -189,7 +189,7 @@ class ImuConverter {
     }
 
     template <typename I, typename S, typename M>
-    void CreateUnitMessage(M& msg, std::chrono::_V2::steady_clock::time_point timestamp, I first, S second) {
+    void CreateUnitMessage(M& msg, std::chrono::steady_clock::time_point timestamp, I first, S second) {
         fillImuMsg(msg, first);
         fillImuMsg(msg, second);
 
@@ -221,7 +221,7 @@ class ImuConverter {
                         const double alpha = diff.count() / dt;
                         I interp = lerpImu(interp0, interp1, alpha);
                         M msg;
-                        std::chrono::_V2::steady_clock::time_point tstamp;
+                        std::chrono::steady_clock::time_point tstamp;
                         if(_getBaseDeviceTimestamp)
                             tstamp = currSecond.getTimestampDevice();
                         else
@@ -274,7 +274,7 @@ class ImuConverter {
                         const double alpha = diff.count() / dt;
                         I interp = lerpImu(interp0, interp1, alpha);
                         M msg;
-                        std::chrono::_V2::steady_clock::time_point tstamp;
+                        std::chrono::steady_clock::time_point tstamp;
                         if(_getBaseDeviceTimestamp)
                             tstamp = currSecond.getTimestampDevice();
                         else
@@ -331,7 +331,7 @@ class ImuConverter {
                         const double alpha = diff.count() / dt;
                         I interp = lerpImu(interp0, interp1, alpha);
                         M msg;
-                        std::chrono::_V2::steady_clock::time_point tstamp;
+                        std::chrono::steady_clock::time_point tstamp;
                         if(_getBaseDeviceTimestamp)
                             tstamp = currSecond.getTimestampDevice();
                         else

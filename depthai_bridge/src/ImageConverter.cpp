@@ -69,7 +69,7 @@ ImageMsgs::Image ImageConverter::toRosMsgRawPtr(std::shared_ptr<dai::ImgFrame> i
     if(_updateRosBaseTimeOnToRosMsg) {
         updateRosBaseTime();
     }
-    std::chrono::_V2::steady_clock::time_point tstamp;
+    std::chrono::steady_clock::time_point tstamp;
     if(_getBaseDeviceTimestamp)
         if(_addExpOffset)
             tstamp = inData->getTimestampDevice(_expOffset);

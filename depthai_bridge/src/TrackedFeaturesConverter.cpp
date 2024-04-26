@@ -21,7 +21,7 @@ void TrackedFeaturesConverter::toRosMsg(std::shared_ptr<dai::TrackedFeatures> in
     if(_updateRosBaseTimeOnToRosMsg) {
         updateRosBaseTime();
     }
-    std::chrono::_V2::steady_clock::time_point tstamp;
+    std::chrono::steady_clock::time_point tstamp;
     if(_getBaseDeviceTimestamp)
         tstamp = inFeatures->getTimestampDevice();
     else

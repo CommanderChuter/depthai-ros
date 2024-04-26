@@ -26,7 +26,7 @@ void ImgDetectionConverter::toRosMsg(std::shared_ptr<dai::ImgDetections> inNetDa
     if(_updateRosBaseTimeOnToRosMsg) {
         updateRosBaseTime();
     }
-    std::chrono::_V2::steady_clock::time_point tstamp;
+    std::chrono::steady_clock::time_point tstamp;
     if(_getBaseDeviceTimestamp)
         tstamp = inNetData->getTimestampDevice();
     else
