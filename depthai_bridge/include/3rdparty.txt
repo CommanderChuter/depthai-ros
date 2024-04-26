@@ -1,0 +1,7 @@
+dirent.h
+License: MIT
+https://github.com/tronkko/dirent
+
+subprocess.hpp
+License: MIT
+https://github.com/arun11299/cpp-subprocess
