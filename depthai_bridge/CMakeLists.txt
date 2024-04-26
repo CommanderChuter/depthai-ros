@@ -74,6 +74,10 @@ file(GLOB LIB_SRC
 "src/TrackedFeaturesConverter.cpp"
 )
 
+if(WIN32)
+  set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
+endif()
+
 add_library(${PROJECT_NAME} SHARED ${LIB_SRC})
 
 ament_target_dependencies(${PROJECT_NAME}
